@@ -6,20 +6,19 @@
 % 
 % Uses two-way travel time information and ship coordinates from an OBS 
 % survey to invert for station location on the seafloor (Lat, Lon, Depth),
-% static correction to the sound velocity through the
-% water column (dvp), and the velocity of the ship in the radial
-% direction of the survey circle (vr0).
+% and static correction to the sound velocity through the
+% water column (dvp).
 %
-% Josh Russell & Zach Eilon 4/16/18
+% Josh Russell, Zach Eilon, & Stephen Mosher 4/16/18
 
 clear; close all;
 
 %% INPUTS
 % path to project
-projpath = '../projects/example_MATLAB/';
+projpath = '../EXAMPLES/example_MATLAB/';
 
 % path to survey data from the project directory
-datapath = './'; 
+datapath = './survey_files/'; 
 
 % path to output directory from project directory (will be created if it does not yet exist)
 outdir = './OUT_OBSrange/'; 

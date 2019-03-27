@@ -6,36 +6,27 @@
 % 
 % Uses two-way travel time information and ship coordinates from an OBS 
 % survey to invert for station location on the seafloor (Lat, Lon, Depth),
-% static correction to the sound velocity through the
-% water column (dvp), and the velocity of the ship in the radial
-% direction of the survey circle (vr0).
+% and static correction to the sound velocity through the
+% water column (dvp).
 %
-% Josh Russell & Zach Eilon 4/16/18
+% Josh Russell, Zach Eilon, & Stephen Mosher 4/16/18
 
 clear; close all;
 
 %% INPUTS
 % path to project
-
-% JOSH
-projpath = '/Users/russell/Lamont/PROJ_OBSrange/working/OBSrange/projects/PacificORCA_v2/'; % DATA
-
-% ZACH
-% projpath = '~/Work/OBSrange/projects/PacificORCA/';
-
-% STEVE
-% projpath = '~/Seismo/projects/OBSrange/projects/PacificORCA/';
-
-% TESTING
-% projpath = '../Tests';
+projpath = '../new_project/';
 
 % path to survey data from the project directory
-datapath = './'; 
+datapath = './survey_files/';
+
 % path to output directory from project directory (will be created if it does not yet exist)
 outdir = './OUT_OBSrange/'; 
+
 % Put a string station name here to only consider that station. 
 % Otherwise, to locate all stations, put ''
-onesta = 'EC03'; %''; %'EC03';
+% onesta = 'EC03'; % run a single station file
+onesta = ''; % run all station files in batch
 
 %% Parameters
 ifsave = 1; % Save results to *.mat?

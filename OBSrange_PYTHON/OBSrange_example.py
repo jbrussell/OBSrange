@@ -44,9 +44,9 @@ parameters = [vpw, dvp, tat, N_bs, E_thresh, npts, dampx, dampy, dampz, dampdvp,
 
 ################################ Directory Setup ###############################
 
-survey_dir = '../projects/example_PYTHON/'
-output_dir = '../projects/example_PYTHON/output/' 
-ssp_dir = '../projects/example_PYTHON/output/station_sound_speed_profiles/'
+survey_dir = '../EXAMPLES/example_PYTHON/survey_files/'
+output_dir = '../EXAMPLES/example_PYTHON/output/'
+ssp_dir = '../EXAMPLES/example_PYTHON/output/station_sound_speed_profiles/'
 
 ###################### Run Inversion for Each Survey File ######################
 
