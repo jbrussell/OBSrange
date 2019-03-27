@@ -12,5 +12,4 @@ OBSrange features:
 * Correct travel times for ray bending due to refraction through the water column using either a custom 1D sound-speed profile or a geographically appropriate profile chosen from the World Ocean Atlas database
 
 -------
-Citation:
 Russell, J.B., Z. Eilon, & S. Mosher (2019) OBSrange: A new tool for the precise remote location of Ocean Bottom Seismometers, SRL, xx, xx-xx.
