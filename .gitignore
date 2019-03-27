@@ -8,3 +8,6 @@
 *.pkl
 *.DS_Store
 *.m~
+*.png
+*.out
+*.toc
