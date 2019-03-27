@@ -45,7 +45,7 @@ parameters = [vpw, dvp, tat, N_bs, E_thresh, npts, dampx, dampy, dampz, dampdvp,
 
 survey_dir = '../new_project/survey_files/'
 output_dir = '../new_project/output/'
-ssp_dir = '../new_project/output/station_sound_speed_profiles'
+ssp_dir = '../new_project/output/station_soundspeed_profiles'
 
 ###################### Run Inversion for Each Survey File ######################
 

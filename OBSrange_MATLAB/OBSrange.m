@@ -21,7 +21,7 @@ projpath = '../new_project/';
 datapath = './survey_files/';
 
 % path to output directory from project directory (will be created if it does not yet exist)
-outdir = './OUT_OBSrange/'; 
+outdir = './output/'; 
 
 % Put a string station name here to only consider that station. 
 % Otherwise, to locate all stations, put ''

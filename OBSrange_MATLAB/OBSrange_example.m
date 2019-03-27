@@ -15,13 +15,13 @@ clear; close all;
 
 %% INPUTS
 % path to project
-projpath = '../EXAMPLES/example_MATLAB/';
+projpath = './EXAMPLE/';
 
 % path to survey data from the project directory
 datapath = './survey_files/'; 
 
 % path to output directory from project directory (will be created if it does not yet exist)
-outdir = './OUT_OBSrange/'; 
+outdir = './output/'; 
 
 % Put a string station name here to only consider that station. 
 % Otherwise, to locate all stations, put ''
