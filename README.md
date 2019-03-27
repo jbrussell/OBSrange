@@ -1,7 +1,7 @@
 # OBSrange
 ### A robust, efficient, open-source OBS location code available in both MATLAB and Python.
 
-OBSrange is a set of scripts written in both [MATLAB](https://www.mathworks.com/products/matlab.html) and [Python](https://www.python.org/downloads/) for precisely locating ocean bottom seismometers (OBSs) using acoustic transponder data. The code reads data from acoustic ranging surveys that measure two-way travel times from ship to instrument as the ship runs a survey pattern. Using these data, imported in survey files, the code inverts for instrument locations, and depth averaged sound speeds in water. Additionally, OBSrange generates several figures visualizing these results as well as estimates of parameter uncertainties. For a detailed description of the inversion algorithm, synthetic tests, and results from the [2018 Young Pacific ORCA experiment](https://pacificorca.wordpress.com/), please refer to the [published]().
+OBSrange is a set of scripts written in both [MATLAB](https://www.mathworks.com/products/matlab.html) and [Python](https://www.python.org/downloads/) for precisely locating ocean bottom seismometers (OBSs) using acoustic transponder data. The code reads data from acoustic ranging surveys that measure two-way travel times from ship to instrument as the ship runs a survey pattern. Using these data, imported in survey files, the code inverts for instrument locations, and depth averaged sound speeds in water. Additionally, OBSrange generates several figures visualizing these results as well as estimates of parameter uncertainties. For a detailed description of the inversion algorithm, synthetic tests, and results from the [2018 Young Pacific ORCA experiment](https://pacificorca.wordpress.com/), please refer to the published [article]().
 
 OBSrange features:
 * Compute precise locations for OBSs on the seafloor from acoustic survey travel time data
@@ -16,4 +16,4 @@ OBSrange features:
 -------
 ###### Citation:
 
-###### Russell, J.B., Z. Eilon, & S. Mosher (2019) OBSrange: A new tool for the precise remote location of Ocean Bottom Seismometers, SRL, xx, xx-xx.
+###### Russell, J.B., Z. Eilon, & S. Mosher (2019) OBSrange: A new tool for the precise remote location of Ocean Bottom Seismometers, SRL, xx, xx-xx. [[PDF]()]
