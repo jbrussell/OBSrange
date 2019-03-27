@@ -11,7 +11,7 @@ OBSrange features:
 * Correct for a known horizontal offset between shipboard GPS and transponder
 * Correct travel times for ray bending due to refraction through the water column using either a custom 1D sound-speed profile or a geographically appropriate profile chosen from the World Ocean Atlas database
 
-![Sample Image](https://github.com/jbrussell/OBSrange/blob/master/README/figures/sample.png)
+![Sample Image](https://github.com/jbrussell/OBSrange/blob/master/README/figures/Figure01.png)
 
 -------
 ###### Citation:
