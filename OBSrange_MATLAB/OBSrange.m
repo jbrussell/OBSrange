@@ -285,9 +285,12 @@ end
 if ~exist(modified_outdir)
 	mkdir(modified_outdir);
 end
+if ~exist([modified_outdir,'/txts/'])
+	mkdir([modified_outdir,'/txts/']);
+end
 
 % Save textfile
-fid = fopen([modified_outdir,'/',data.sta,'_location.txt'],'w');
+fid = fopen([modified_outdir,'/txts/',data.sta,'_location.txt'],'w');
 fprintf(fid,'Bootstrap inversion results (2sigma uncertainty)');
 fprintf(fid,'\nStation: %s',data.sta);
 fprintf(fid,'\nLat:   %.5f deg (%f) \nLon:   %.5f deg (%f) \nX:     %.1f m (%.1f) \nY:    %.1f m (%.1f) \nDepth: %.1f m (%.1f) \nTAT:   %.1f ms (%f) \nWater Vel.: %.1f m/s (%f)',mean(lat_sta),std(lat_sta)*2,mean(lon_sta),std(lon_sta)*2,mean(x_sta),std(x_sta)*2,mean(y_sta),std(y_sta)*2,mean(z_sta),std(z_sta)*2,mean(TAT)*1000,std(TAT)*1000*2,mean(V_w),std(V_w)*2);
