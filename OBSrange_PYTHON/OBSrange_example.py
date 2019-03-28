@@ -20,7 +20,7 @@ from funcs import fetch, locate, output
 
 vpw = 1500.0            # Assumed velocity of sound in water [m/s]
 dvp = 0                 # Assumed perturbation to vpw [m/s]
-tat = 0.014             # Assumed sensor turn-around time [s]
+tat = 0.013             # Assumed sensor turn-around time [s]
 N_bs = 1000             # Number of bootstrap iterations
 E_thresh = 1e-5         # RMS reduction threshold for inversion
 npts = 1                # Npts in moving avg of ship vel. (1 = no smoothing)
