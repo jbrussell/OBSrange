@@ -37,7 +37,7 @@ par(1).vp_w = 1500; % Assumed water velocity (m/s)
 par.N_bs = 1000; % Number of bootstrap iterations
 par.E_thresh = 1e-5; % RMS reduction threshold for inversion
 
-% Traveltime correction parameters
+% Doppler correction to traveltime
 % ==>  +1 if location is RECEIVE, -1 if location is SEND, 0 if no correction
 par.if_twtcorr = 0; % Apply a traveltime correction to account for ship velocity?
 par.npts_movingav = 1; %5; % number of points to include in moving average smoothing of ship velocity (1 = no smoothing);
@@ -296,7 +296,13 @@ fprintf(fid,'\nStation: %s',data.sta);
 fprintf(fid,'\nLat:   %.5f deg (%f) \nLon:   %.5f deg (%f) \nX:     %.1f m (%.1f) \nY:    %.1f m (%.1f) \nDepth: %.1f m (%.1f) \nTAT:   %.1f ms (%f) \nWater Vel.: %.1f m/s (%f)',mean(lat_sta),std(lat_sta)*2,mean(lon_sta),std(lon_sta)*2,mean(x_sta),std(x_sta)*2,mean(y_sta),std(y_sta)*2,mean(z_sta),std(z_sta)*2,mean(TAT)*1000,std(TAT)*1000*2,mean(V_w),std(V_w)*2);
 fprintf(fid,'\nDrift Lon: %f m (%f) \nDrift Lat: %f m (%f) \nDrift:    %f m (%f) \nDrift Azi: %f deg (%f)\ndz: %f m (%f)\n',mean(dx_drift),std(dx_drift)*2,mean(dy_drift),std(dy_drift)*2,mean(drift),std(drift)*2,mean(azi),std(azi)*2,mean(dz_sta),std(dz_sta)*2);
 fprintf(fid,'\nRMS:  %.4f ms (%f)\n',mean(E_rms)*1000,std(E_rms)*2*1000);
-fprintf(fid,'\nBad pings Removed: %d',N_badpings);
+fprintf(fid,'\nBad Pings Removed: %d',N_badpings);
+if par.if_twtcorr; twtcorr_str = 'YES'; else twtcorr_str = 'NO'; end
+if par.if_raycorrect; raycorrect_str = 'YES'; else raycorrect_str = 'NO'; end
+fprintf(fid,'\nDoppler Correction: %s',twtcorr_str);
+fprintf(fid,'\nRay Bending Correction: %s',raycorrect_str);
+fprintf(fid,'\nGPS-Transponder Offset: dforward = %d m',par.dforward);
+fprintf(fid,'\n                        dstarboard = %d m',par.dstarboard);
 fprintf(fid,'\n===================================================\n');
 fprintf(fid,'%10s %10s %15s %15s %15s %15s \n','Lat','Lon','Range (m)','Residual (s)','Doppler Vel. (m/s)','TWT corr. (ms)');
 for ii = 1:Nobs

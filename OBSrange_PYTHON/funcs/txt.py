@@ -10,7 +10,11 @@ from numpy import std as S
 from numpy import mean as M
 from numpy import sqrt as sq
 
-def build(fle, R):
+def build(fle, R, parameters):
+  dforward   = parameters[13]
+  dstarboard = parameters[14]
+  twtcorr    = parameters[15]
+  raycorr    = parameters[16]
   # Fancy characters (degree sign, lower-case sigma, plus-minus)
   deg = u'\N{DEGREE SIGN}'
   sig = u'\u03C3'
@@ -44,6 +48,10 @@ def build(fle, R):
   fle.write(fmt1('RMS:', M(R['E_rms']*1000), 'ms '+pm, 2 * S(R['E_rms'])*1000))
   fle.write('\n')
   fle.write('{} {} \n'.format('Bad Pings Removed:', R['Nbad']))
+  fle.write('{} {} \n'.format('Doppler Correction:', ('YES' if twtcorr else 'NO')))
+  fle.write('{} {} \n'.format('Ray Bending Correction:', ('YES' if raycorr else 'NO')))
+  fle.write('{} {} {} \n'.format('GPS-Transponder Offset:   dforward = ', dforward,' m'))
+  fle.write('{} {} {} \n'.format('                        dstarboard = ', dstarboard,' m'))
   fle.write('{:=<80} \n'.format(''))
 
   # .txt survey points.

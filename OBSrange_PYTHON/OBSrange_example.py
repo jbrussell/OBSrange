@@ -33,7 +33,7 @@ QC = True               # Option to perform quality control on survey points
 res_thresh = 500        # Threshold [ms] beyond which survey points are tossed
 dforward = 0            # GPS-transp offset [m] (+ means trans. further forward)
 dstarboard = 0          # GPS-transp offset [m] (+ means trans. further stboard)
-twtcorr = True    # Option to apply a travel-time correction for ship velocity
+twtcorr = False    # Option to apply a travel-time correction for ship velocity
 raycorr = True    # Option to apply a travel-time correction due to ray bending:
                   #   If you choose to correct for ray beding you can either
                   #   input your own depth-soundspeed profile OR our code will 
@@ -71,6 +71,6 @@ np.random.seed(0)
 # Perform locations for each survey site then write results to output.
 for survey_fle in survey_fles:
   results, figs = locate.instruments(survey_fle, parameters, ssp_dir)
-  output.out(results, figs, out_pkls, out_plts, out_txts)
+  output.out(results, figs, out_pkls, out_plts, out_txts, parameters)
   
 ##################################### FIN ######################################

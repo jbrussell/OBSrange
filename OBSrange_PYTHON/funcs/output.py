@@ -13,7 +13,7 @@ import os
 import pickle
 from funcs import txt
 
-def out(results, figs, pkls, plts, txts):
+def out(results, figs, pkls, plts, txts, parameters):
   # Print statement.
   print('\n Writing results ...')
 
@@ -26,7 +26,7 @@ def out(results, figs, pkls, plts, txts):
   # Create and write a .txt file containing the final results.
   txt_path = txts + results['sta'] + '_location.txt'
   txt_fle = open(txt_path, 'w')
-  txt.build(txt_fle, results)
+  txt.build(txt_fle, results, parameters)
 
   # Save figures in the output directory.
   for i, fig in enumerate(figs):
