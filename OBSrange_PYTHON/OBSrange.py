@@ -68,6 +68,6 @@ if not os.path.exists(ssp_dir):
 # Perform locations for each survey site then write results to output.
 for survey_fle in survey_fles:
   results, figs = locate.instruments(survey_fle, parameters, ssp_dir)
-  output.out(results, figs, out_pkls, out_plts, out_txts)
+  output.out(results, figs, out_pkls, out_plts, out_txts, parameters)
   
 ##################################### FIN ######################################
