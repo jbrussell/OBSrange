@@ -16,4 +16,4 @@ OBSrange features:
 -------
 ###### Citation:
 
-###### Russell, J.B., Z. Eilon, & S. Mosher (2019) OBSrange: A new tool for the precise remote location of Ocean Bottom Seismometers, SRL, xx, xx-xx. [[PDF]()]
+###### Russell, J.B., Z. Eilon, & S. Mosher (2019) OBSrange: A new tool for the precise remote location of Ocean Bottom Seismometers, SRL, xx, xx-xx. [[PDF](https://pubs.geoscienceworld.org/ssa/srl/article/570368/obsrange-a-new-tool-for-the-precise-remote)]
