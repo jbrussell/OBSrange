@@ -1,4 +1,4 @@
-function [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
+function [ datao, datao_bad ] = pingQC( data, par, res_thresh, rms_thresh )
 % [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
 %
 % Ping quality control function - flags bad data based on difference
@@ -8,6 +8,11 @@ function [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
 % is to wean out bad readings from the deckbox (spurious reflections from
 % the transducers that do happen to come in between the range gates but are
 % not truly from the instruments). 
+%
+% 11/2019:
+% In addition to applying a simple residual threshold, this version inverts
+% for a preliminary nominal location and removes pings above a specified 
+% RMS threshold.
 % 
 % INPUTS:
 %   data:  structure with ship location and travel time data
@@ -17,7 +22,7 @@ function [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
 %               outliers are thrown out, and you don't lose lots of data
 %               from a station that has drifted even a significant distance
 % 
-% J. Russell, 2018
+% J. Russell, Z. Eilon, S. Mosher, 2018
 
 lat_drop = data.lat_drop;
 lon_drop = data.lon_drop;
@@ -25,6 +30,9 @@ z_drop = data.z_drop;
 lats_ship = data.lats;
 lons_ship = data.lons;
 twt = data.twt;
+vp_w = par.vp_w;
+res_thresh = par.res_thresh;
+rms_thresh = par.rms_thresh;
 
 [ x_ship, y_ship ] = lonlat2xy_nomap( lon_drop, lat_drop, lons_ship, lats_ship );
 % [ x_drop, y_drop ] = lonlat2xy_nomap( lon_drop, lat_drop, lon_drop, lat_drop );
@@ -45,30 +53,56 @@ if (sum(I_bad)/length(I_bad))>0.9
     error('Something very wrong with travel times...');
 end
 
+% Do quick inversion and remove bad pings based on RMS of2 residuals for best location
+m0_strt(1,1) = x_drop; %x0;
+m0_strt(2,1) = y_drop; %y0;
+m0_strt(3,1) = z_drop; %z0;
+m0_strt(4,1) = 0; %dvp;
+z_ship = zeros(size(x_ship));
+azi_ship = atan2d(x_ship,y_ship);
+azi_ship(azi_ship<0)=azi_ship(azi_ship<0)+360;
+M = length(m0_strt);
+v_ship = [x_ship(~I_bad)';y_ship(~I_bad)';z_ship(~I_bad)'];
+H = eye(M, M) .* diag([par.dampx, par.dampy, par.dampz, par.dampdvp]);
+[ m_final,models,v,N,R,Cm ] = ...
+        inv_newtons( par,m0_strt,twt(~I_bad),...
+                    x_ship(~I_bad),y_ship(~I_bad),z_ship(~I_bad),...
+                    v_ship,H,[]);
+dtwt_solv = models(end).dtwt;                
+I_bad_rms = abs(dtwt_solv) > rms_thresh*rms(dtwt_solv);
+
+% Index all bad pings
+ping_nums = [1:length(dtwt)];
+ping_nums_bad = ping_nums(I_bad);
+ping_nums_solv = ping_nums(~I_bad);
+ping_nums_rms_bad = ping_nums_solv(I_bad_rms);
+I_bad_all = sort([ping_nums_bad, ping_nums_rms_bad]);
+I_good_all = setdiff(ping_nums,I_bad_all);
+
 % Plot
 if 0
-    obs = 1:length(dtwt);
     figure(50); clf;
-    plot(obs,dtwt*1000,'ok'); hold on;
-%     plot( [obs(1),obs(end)] , [(mean(dtwt)+2*std(dtwt))*1000, (mean(dtwt)+2*std(dtwt))*1000] ,'-');
-%     plot( [obs(1),obs(end)] , [(mean(dtwt)-2*std(dtwt))*1000, (mean(dtwt)-2*std(dtwt))*1000] ,'-');
-    xlabel('Observation #');
-    ylabel('Residual (ms)');
+    plot(azi_ship(~I_bad),dtwt(~I_bad)*1000,'ok'); hold on;
+    plot(azi_ship(I_bad),dtwt(I_bad)*1000,'o','color',[0.8 0.8 0.8]); hold on;
+    plot(azi_ship(~I_bad),dtwt_solv*1000,'om');
+    plot(azi_ship(I_bad_all),dtwt(I_bad_all)*1000,'.','color',[1 0 0]);
+    xlabel('azimuth (deg)');
+    ylabel('residual (ms)');
 end
 
 datao.lat_drop = lat_drop;
 datao.lon_drop = lon_drop;
 datao.z_drop = z_drop;
-datao.lats = lats_ship(~I_bad);
-datao.lons = lons_ship(~I_bad);
-datao.t_ship = data.t_ship(~I_bad);
-datao.twt = twt(~I_bad);
+datao.lats = lats_ship(I_good_all);
+datao.lons = lons_ship(I_good_all);
+datao.t_ship = data.t_ship(I_good_all);
+datao.twt = twt(I_good_all);
 datao.sta = data.sta;
 
-datao_bad.lats = lats_ship(I_bad);
-datao_bad.lons = lons_ship(I_bad);
-datao_bad.t_ship = data.t_ship(I_bad);
-datao_bad.twt = twt(I_bad);
+datao_bad.lats = lats_ship(I_bad_all);
+datao_bad.lons = lons_ship(I_bad_all);
+datao_bad.t_ship = data.t_ship(I_bad_all);
+datao_bad.twt = twt(I_bad_all);
 
 end
 

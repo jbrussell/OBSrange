@@ -15,7 +15,9 @@ ax2 = axes('pos',[0.57 0.1100 0.38 0.8150]); hold(ax2,'on')
 
 
 plot(ax1,lons_ship,lats_ship,'ok','markerfacecolor',clr(2,:),'markersize',13,'linewidth',1);
-plot(ax1,data_bad.lons,data_bad.lats,'xk','markersize',13,'linewidth',2);
+for ii = 1:length(data_bad)
+    plot(ax1,data_bad(ii).lons,data_bad(ii).lats,'xk','markersize',13,'linewidth',2);
+end
 plot(ax1,lon_drop,lat_drop,'sk','markerfacecolor',[0.5 0.5 0.5],'markersize',15,'linewidth',1);
 plot(ax1,mean(lon_sta),mean(lat_sta),'pk','markerfacecolor',[1 1 0],'markersize',25,'linewidth',1)
 grid(ax1,'on'); 
@@ -28,7 +30,9 @@ axis(ax1,'equal');
 
 plot(ax2,[lons_ship, ones(size(lons_ship))*mean(lon_sta)]',[z_ship, ones(size(z_ship))*mean(z_sta)]','-k','linewidth',0.5,'color',[0.5 0.5 0.5]);
 h1(1) = plot(ax2,lons_ship,z_ship,'ok','markerfacecolor',clr(2,:),'markersize',13,'linewidth',1);
-plot(ax2,data_bad.lons,zeros(size(data_bad.lats)),'xk','markersize',13,'linewidth',2);
+for ii = 1:length(data_bad)
+    plot(ax2,data_bad(ii).lons,zeros(size(data_bad(ii).lats)),'xk','markersize',13,'linewidth',2);
+end
 h1(2) = plot(ax2,lon_drop,z_drop,'sk','markerfacecolor',[0.5 0.5 0.5],'markersize',15,'linewidth',1);
 h1(3) = plot(ax2,mean(lon_sta),mean(z_sta),'pk','markerfacecolor',[1 1 0],'markersize',25,'linewidth',1);
 set(ax2,'fontsize',16,'linewidth',2,'box','on',...
