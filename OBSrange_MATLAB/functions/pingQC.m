@@ -1,4 +1,4 @@
-function [ datao, datao_bad ] = pingQC( data, par, res_thresh, rms_thresh )
+function [ datao, datao_bad ] = pingQC( data, par )
 % [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
 %
 % Ping quality control function - flags bad data based on difference
@@ -62,7 +62,7 @@ z_ship = zeros(size(x_ship));
 azi_ship = atan2d(x_ship,y_ship);
 azi_ship(azi_ship<0)=azi_ship(azi_ship<0)+360;
 M = length(m0_strt);
-v_ship = [x_ship(~I_bad)';y_ship(~I_bad)';z_ship(~I_bad)'];
+v_ship = zeros(3,sum(~I_bad));
 H = eye(M, M) .* diag([par.dampx, par.dampy, par.dampz, par.dampdvp]);
 [ m_final,models,v,N,R,Cm ] = ...
         inv_newtons( par,m0_strt,twt(~I_bad),...
