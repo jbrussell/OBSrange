@@ -376,7 +376,7 @@ end
 end
 
 % Output summary Excel spreadsheet
-ofile = 'stalocs_summary.xls';
+ofile = 'Station_Relocations.xls';
 path2txts = [modified_outdir,'/txts/'];
 txts2xls(path2txts,ofile);
 
