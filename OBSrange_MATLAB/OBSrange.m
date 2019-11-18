@@ -375,6 +375,11 @@ end
 
 end
 
+% Output summary Excel spreadsheet
+ofile = 'stalocs_summary.xls';
+path2txts = [modified_outdir,'/txts/'];
+txts2xls(path2txts,ofile);
+
 % message if no success
 if is==Nstas && ~exist('rawdatfile','var')
     fprintf('*********************\nStation %s does not seem to exist in that folder\n',onesta);
