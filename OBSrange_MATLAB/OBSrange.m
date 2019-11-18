@@ -50,7 +50,7 @@ par.if_raycorrect = 1; % Apply a traveltime correction to account for rays bendi
 %  as "sta" in the code below) OR our code will calculate one for you based
 %  on the location and the date of the survey (using monthly means and a
 %  decadal SSP projection)
-par.sspfiledir = './OUT_OBSrange/station_soundspeed_profiles';
+par.sspfiledir = [outdir,'/station_soundspeed_profiles'];
 
 % GPS-transponder offset
 % if this is not known, set both of these to zero
@@ -58,8 +58,6 @@ par.dforward = 0; % units of meters, positive means transponder is further forwa
 par.dstarboard = 0; % units of meters, positive means transponder is further starboard than GPS
 
 % Ping QC -- Remove pings > ping_thresh ms away from neighbor
-ifQC_ping = 1; % Do quality control on pings? (We strongly recommend this!)
-res_thresh = 500; % (ms) Will filter out pings with residuals > specified magnitude
 par.ifQC_ping = 1; % Do quality control on pings? (We strongly recommend this!)
 par.res_thresh = 500; % (ms) Will filter out pings with residuals > specified magnitude
 par.rms_thresh = 2; % Remove pings above this RMS residual threshold, calculated from a single travel-time inversion
@@ -113,10 +111,6 @@ end
 if isempty(data) || isempty(data.lon_drop) || isempty(data.lat_drop)
 	continue;
 end
-if ifQC_ping
-	[dataQC, data_bad] = pingQC(data, par.vp_w, res_thresh);
-	data = dataQC;
-    N_badpings = length(data_bad.twt);
 if par.ifQC_ping
     N_badpings = 0;
     count = 0;
