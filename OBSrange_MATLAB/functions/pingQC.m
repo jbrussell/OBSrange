@@ -33,6 +33,7 @@ twt = data.twt;
 vp_w = par.vp_w;
 res_thresh = par.res_thresh;
 rms_thresh = par.rms_thresh;
+alt = data.alt;
 
 [ x_ship, y_ship ] = lonlat2xy_nomap( lon_drop, lat_drop, lons_ship, lats_ship );
 % [ x_drop, y_drop ] = lonlat2xy_nomap( lon_drop, lat_drop, lon_drop, lat_drop );
@@ -42,7 +43,7 @@ y_drop=0;
 twt_pre = calcTWT(x_drop, y_drop, z_drop, 0, 0, x_ship, y_ship, 0, vp_w);
 dtwt = twt - twt_pre;
 
-I_bad = abs(dtwt)*1000 > res_thresh;
+I_bad = abs(dtwt)*1000 > res_thresh | alt' < 0;
 if (sum(I_bad)/length(I_bad))>0.9
     % MUST BE 1-way travel time??!!
     twt = 2*twt;
@@ -98,6 +99,7 @@ datao.lons = lons_ship(I_good_all);
 datao.t_ship = data.t_ship(I_good_all);
 datao.twt = twt(I_good_all);
 datao.sta = data.sta;
+datao.alt = data.alt(I_good_all);
 
 datao_bad.lats = lats_ship(I_bad_all);
 datao_bad.lons = lons_ship(I_bad_all);

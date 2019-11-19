@@ -62,6 +62,7 @@ while 1
         lon_deg(iping) = scan{8};
         lon_min(iping) = scan{9};
         E_W(iping) = cell2mat(scan{10});
+        alt(iping) = scan{12};
         YEAR = scan{14};
         JDAY = scan{15};
         HOUR = scan{16};
@@ -89,6 +90,7 @@ data.sta = sta;
 data.lon_drop = lon_drop;
 data.lat_drop = lat_drop;
 data.z_drop = z_drop;
+data.alt = alt;
 
 end
 
