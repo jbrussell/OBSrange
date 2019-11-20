@@ -27,6 +27,18 @@ end
 
 %% Load ssp file
 [ssp,z] = load_sspfile(sspfile);
+
+% extend ssp profile down indefinitely from last point (constant gradient)
+sspslp = diff(ssp(end-1:end))./diff(z(end-1:end));
+% extend down to bottom of Marianas... this results in stupid velocities at
+% those depths...
+z = [z;12e3];
+ssp = [ssp;diff(z(end-1:end))*sspslp + ssp(end)];
+if z_sta>6
+    error(sprintf('NO! Your station is too deep. \nFirstly, the flotation might not work \n - syntactic foam has a maximum depth range, you know.\n Secondly, our soundspeed profile is nonsense at those depths.\n Just FYI. \n'));
+end
+
+% make vel profile
 v_profile = struct('ssp',ssp/1000,'z',z/1000);
 
 
