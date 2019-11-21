@@ -60,8 +60,8 @@ par.dstarboard = 0; % units of meters, positive means transponder is further sta
 % Ping QC -- Remove pings > ping_thresh ms away from neighbor
 par.ifQC_ping = 1; % Do quality control on pings? (We strongly recommend this!)
 par.res_thresh = 500; % (ms) Will filter out pings with residuals > specified magnitude
-par.rms_thresh = 2; % Remove pings above this RMS residual threshold, calculated from a single travel-time inversion
-par.QC_iter = 2; % number of times to iterate through QC steps
+par.rms_thresh = 2.5; % Remove pings above this RMS residual threshold, calculated from a single travel-time inversion
+par.QC_iter = 20; % number of times to iterate through QC steps
 
 % TAT - Define turnaround which remains fixed (transponder-specific value)
 par.TAT = 0.013; % (s) [13 ms for Edgetech instruments]

@@ -1,5 +1,5 @@
 function [ datao, datao_bad ] = pingQC( data, par )
-% [ datao, datao_bad ] = pingQC( data, vp_w, res_thresh )
+% [ datao, datao_bad ] = pingQC( data, vp_w )
 %
 % Ping quality control function - flags bad data based on difference
 % between predicted travel time for some preliminary model and the actual
@@ -33,6 +33,7 @@ twt = data.twt;
 vp_w = par.vp_w;
 res_thresh = par.res_thresh;
 rms_thresh = par.rms_thresh;
+% dtwt_thresh = par.dtwt_thresh/1e3;
 alt = data.alt;
 
 [ x_ship, y_ship ] = lonlat2xy_nomap( lon_drop, lat_drop, lons_ship, lats_ship );
@@ -70,7 +71,8 @@ H = eye(M, M) .* diag([par.dampx, par.dampy, par.dampz, par.dampdvp]);
                     x_ship(~I_bad),y_ship(~I_bad),z_ship(~I_bad),...
                     v_ship,H,[]);
 dtwt_solv = models(end).dtwt;                
-I_bad_rms = abs(dtwt_solv) > rms_thresh*rms(dtwt_solv);
+I_bad_rms = abs(dtwt_solv - median(dtwt_solv)) >  rms_thresh*rms(dtwt_solv);
+% I_bad_rms = I_bad_rms | (abs(dtwt_solv) >  dtwt_thresh);
 
 % Index all bad pings
 ping_nums = [1:length(dtwt)];
