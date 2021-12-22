@@ -22,7 +22,7 @@ if exist(sspfile,'file')~=2
     month_deploy = ceil(12*t_julday_s/(365.25*24*3600));
     % write ssp file
     addpath(ocean_profile_dir);
-    getlev_obsrange(lalo(1),lalo(2),month_deploy+1,sspfile,ocean_profile_dir);
+    getlev_obsrange(lalo(1),lalo(2),month_deploy,sspfile,ocean_profile_dir);
 end
 
 %% Load ssp file
