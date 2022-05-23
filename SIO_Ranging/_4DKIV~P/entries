@@ -1,0 +1,54 @@
+8
+
+dir
+45
+http://obsgilligan.ucsd.edu:8080/svn/lcheapo/General/Ranging/Ranging
+http://obsgilligan.ucsd.edu:8080/svn/lcheapo
+
+
+
+2008-11-05T21:55:28.669498Z
+44
+paul
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6f77b9d3-6a50-4c70-86c2-fa491d558040
+
+gpsranging
+file
+
+
+
+
+2009-01-15T20:51:43.000000Z
+0f19c726bc4276be6f571feef49092d5
+2007-07-05T22:38:46.207888Z
+7
+paul
+has-props
+
+gpsranging-8011M
+file
+
+
+
+
+2009-01-15T20:51:43.000000Z
+37bdd345285d72f51ea62a85542f1358
+2008-11-05T21:55:28.669498Z
+44
+paul
+has-props
+

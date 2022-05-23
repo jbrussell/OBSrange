@@ -1,0 +1,248 @@
+#!/usr/bin/python
+# -*- coding: iso-8859-1 -*-
+#***************************************************************************
+# Copyright (c) 2004 U.C. San Diego
+#      
+# Filename:    gpsranging
+# Version:     0.2
+# Date:        Wed Jul 28 17:32:04 2004
+# Author:      Paul Georgief
+# Email:       georgief@igpp.ucsd.edu
+# Purpose:     First pass - quick and dirty!!!
+#
+# ***************************************************************************
+import os, sys, string, glob, time, datetime, re
+import serial
+
+##############################################################################
+# Name          : printLogo
+# Purpose       : Display the program logo
+# Inputs        : none
+# Outputs       : none
+# Bidirectional : none
+# Returns       : none
+# Notes         : none
+##############################################################################
+def printLogo():
+    os.system("clear")   # Clear the screen
+    print "                                       _             "
+    print "  __ _ _ __  ___ _ __ __ _ _ __   __ _(_)_ __   __ _ "
+    print " / _` | '_ \\/ __| '__/ _` | '_ \\ / _` | | '_ \\ / _` |"
+    print "| (_| | |_) \\__ \\ | | (_| | | | | (_| | | | | | (_| |"
+    print " \\__, | .__/|___/_|  \\__,_|_| |_|\\__, |_|_| |_|\\__, |"
+    print " |___/|_|                        |___/         |___/ "
+
+
+##############################################################################
+# Name          : sendGPSCmd
+# Purpose       : Send a command to the GPS and wait for a reply
+# Inputs        : port     - port to write to
+#                 cmd      - command string to send
+# Outputs       : none
+# Bidirectional : none
+# Returns       : GPS return value
+# Notes         : The commands must end with a '\r\n'!  This is contrary to
+#                 what the manual says!
+##############################################################################
+def sendGPSCmd(port, cmd):
+    "Send a command to the port and wait for a response from the port."
+    port.write(cmd+"\r\n")
+    return port.readline()
+
+##############################################################################
+# Name          : getSerialDevice
+# Purpose       : Look through the /dev directory looking for Keyspan devices.
+# Inputs        : none
+# Outputs       : none
+# Bidirectional : none
+# Returns       : The path to device or None
+# Notes         : none
+##############################################################################
+def getSerialDevice(prompt, default=1):
+    "Searches for Return a list of all available keyspan serial devices on the Mac."
+    deviceList = glob.glob('/dev/tty.USA*')
+    if len (deviceList) == 0:
+        return None
+    
+    print prompt
+
+    i = 1
+    for dev in deviceList:
+        print "[%d] %s" % (i, deviceList[i-1])
+        i += 1
+
+    try:
+        value = int(raw_input("\nChoose [default=%d]: " % default))
+    except:
+        value = -1
+        
+    if (value <=0 or value > len(deviceList)):
+        value = default
+        print "Using Default (%s)" % deviceList[value-1]
+    else:
+        print "Using %s for your serial device" % deviceList[value-1]
+        
+    return deviceList[value-1]
+
+##############################################################################
+# Name          : getTime
+# Purpose       : To parse the gps time string
+# Inputs        : tstring - time string to parse
+# Outputs       : none
+# Bidirectional : none
+# Returns       : dictionary of values (see below)
+# Notes         : none
+##############################################################################
+def getTime(tstring):
+    "Takes a gps time string and splits it into time fields.  On success returns a dictionary containing the entries."
+    timeMode = ["GPS Time", "UTC Time", "LUTC (Local UTC) Time", "LGPS (Local GPS) Time", "MAN (Manual Time)"]
+    operationMode = ["Warm-up", "Time Locked", "Coasting", "Recovering", "Manual (Manual Time)"]
+    tfomStr = ["100nS < time error <= 1uS", 
+	       "1uS < time error <= 10uS", 
+	       "10uS < time error <= 100uS", 
+	       "100uS < time error <= 1mS",
+	       "1mS < time error <= 10mS",
+	       "10ms < time errror"]
+
+    tdic = {}
+    try:
+        (tcmd, tyear, tjday, thour, tmin, tsec, tmode, ttfom, tomode) = tstring.split(',')
+	tdic['year']   = int(tyear)
+	tdic['jday']   = int(tjday)
+	tdic['hour']   = int (thour)
+	tdic['minute'] = int(tmin)
+	tdic['second'] = int(tsec)
+	tdic['mode']   = int(tmode)
+	tdic['tfom']   = int(ttfom)
+	tdic['omode']  = int(tomode)
+	tdic['modeString']  = timeMode[tdic["mode"] - 1]
+	tdic['tfomString']  = tfomStr[tdic["tfom"] - 4]
+	tdic['omodeString'] = operationMode[tdic["omode"]]
+	tdic['time'] = "%(year)4d:%(jday)03d:%(hour)02d:%(minute)02d:%(second)02d" % tdic
+    except:
+        tdic = {}       # Error... Zero out everything - cannot trust anything.
+
+    return tdic
+
+
+##############################################################################
+# Name          : main
+# Purpose       : Main program
+# Inputs        : non
+# Outputs       : none
+# Bidirectional : none
+# Returns       : none
+# Notes         : -
+##############################################################################
+def main():
+
+    printLogo()
+    print "\n"
+
+    # Determine serial ports to use for the devices
+    gpsDev = getSerialDevice("Enter device attached to GPS clock:", 1); print "\n"
+    edgeDev = getSerialDevice("Enter device attached to EdgeTech Ranging System:", 2)
+
+    print "\n"
+    if (gpsDev == None or edgeDev == None):
+        print "Error: Cannot find a serial device.\nIs the Keyspan plugged into the USB port?\n"
+        sys.exit(-1)
+
+    # Got something...
+    printLogo()
+    print "GPS:      %s" % gpsDev
+    print "EdgeTech: %s" % edgeDev
+    print "\n\n"
+    print "=" * 70
+    print "Please configure the EdgeTech to the following setup:"
+    print "1) Set the units for ranging to be in msec (instead of meters)."
+    print "   Keypad Commands: <MENU> -> 1 (Range Setup) -> 5 (Units) -> msec"
+    print "2) Configure the EdgeTech to send ranging information to the serial port."
+    print "   Keypad Commands: <MENU> -> 3 (RS232 Setup) -> 3 (Logging) -> Ranges"
+    print "3) Configure the repition rate for ranging (set to 20 seconds)."
+    print "   Keypad Commands: <R> -> <MAN/REP> twice -> type 20.0 -> <ENT>"
+    print "4) Start the Ranging."
+    print "   Keypad Commands: <R> -> <INT>"
+    print "=" * 70
+
+    try:
+        gps = serial.Serial(gpsDev, 9600, timeout=2)
+        edgeTech = serial.Serial(edgeDev, 9600)
+    except:
+        print "\nError: Cannot open communications with one of the serial devices."
+        sys.exit(-1)
+
+    # Flush the buffers --- had a problem with residual data
+    gps.flushInput()
+    gps.flushOutput()
+    edgeTech.flushInput()
+    edgeTech.flushOutput()
+
+
+    # Ask for a filename
+    filename = raw_input("\nFile name (without extension): ")
+    cruiseID = "Carbotte"
+    siteID       = raw_input("Site Identifier: ")
+    instrumentID = raw_input("Instrument Identifier:  ")
+    latDropPoint = raw_input("Drop point (Latitude):  ")
+    lonDropPoint = raw_input("Drop point (Longitude): ")
+    depthPoint   = raw_input("Initial Depth (meters): ")
+    comment      = raw_input("Comment: ")
+
+    # Create a distinctive filename (based on the current time) and open it for writing.
+    #filename = os.path.expanduser("~/ranging-" + str(time.time()).split('.')[0] )
+    filename = filename + "-" + str(time.time()).split('.')[0] + ".txt"
+    print "Output File:   %s" % filename
+
+    fp = open(filename, "w")
+    fp.write("Ranging data taken on:  %s\n" % str(datetime.datetime.today()))
+    fp.write("Cruise:                 %s\n" % cruiseID)
+    fp.write("Site:                   %s\n" % siteID)
+    fp.write("Instrument:             %s\n" % instrumentID)
+    fp.write("Drop Point (Latitude):  %s\n" % latDropPoint)
+    fp.write("Drop Point (Longitude): %s\n" % lonDropPoint)
+    fp.write("Depth (meters):         %s\n" % depthPoint)
+    fp.write("Comment:                %s\n" % comment)
+    fp.write("="*50 + "\n\n")
+    #-------------------------------
+    # Main Loop - Wait around forever.
+    # Files will automatically close when the program ends.
+    #-------------------------------
+    print "\n\nWaiting for ranging data from EdgeTech..."
+    while 1:
+        range = edgeTech.readline().strip()
+        position = sendGPSCmd(gps, "$SPOS*")
+	timeString = sendGPSCmd(gps, "$TIME*")
+
+        try:
+            # Distance comes in as 'xxxxx units S' -- so, split at the white spaces
+            # Position comes in as a 'PositionString*checksum' --- for now, ignore the checksum.
+	    (distance, units, slantMode) = re.split ('\s+', range)
+            pos = position.split('*')[0]
+            (cmd, latDeg, latMin, latHem, longDeg, longMin, longHem, alt) = pos.split(',')
+	    currentTime = getTime(timeString.split('*')[0])["time"]
+
+            s = "%5d %s Lat: %s %s %s  Lon: %s %s %s  Alt: %s Time(UTC): %s" % (int(distance),
+								  units,
+								  latDeg,
+								  latMin,
+								  latHem,
+								  longDeg,
+								  longMin,
+								  longHem,
+								  alt,
+								  currentTime
+								  )
+        except:
+            s = "Event skipped - Timeout or Badly formatted data was received"
+            
+        print s
+        fp.write(s + '\n')
+
+
+
+# ----------------------------------------------------------------------------------
+# Check for script invocation (run 'main' if the script is not imported as a module)
+# ----------------------------------------------------------------------------------
+if __name__ ==  '__main__':
+    main()
