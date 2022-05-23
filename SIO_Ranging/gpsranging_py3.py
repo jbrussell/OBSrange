@@ -1,5 +1,6 @@
-# This version updated in 2022 by James R McVey. Now Python 3 compatible 
-# with parallel GPS logging and the modern Edgetech deck box serial output.
+# This is version Python 3 compatible with parallel GPS logging and for the 
+# modern Edgetech deck box serial output.
+# Provided courtesy of James R McVey (PNNL) on 5/23/2022
 import os
 import sys
 import time
