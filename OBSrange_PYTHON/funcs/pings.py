@@ -103,7 +103,7 @@ def load(txt_file):
           
   return data
 
-def qc(data, vpw, thresh):
+def qc(data, vpw, tat, thresh):
   # Grab required variables to calculate time to traverse the Euclidean dist.
   lat0 = data['lat_drop']
   lon0 = data['lon_drop']
@@ -116,7 +116,7 @@ def qc(data, vpw, thresh):
   xs, ys = coord_txs.latlon2xy(lat0, lon0, lats, lons)
  
   # Calculate theoretical two-way travel-times and residuals.
-  theor_twts = calc.twt(x0=0,y0=0,z0=z0,xs=xs,ys=ys,zs=0,vpw=vpw,dvp=0,tat=0)
+  theor_twts = calc.twt(x0=0,y0=0,z0=z0,xs=xs,ys=ys,zs=0,vpw=vpw,dvp=0,tat=tat)
   dtwts = twts - theor_twts
 
   # Find which survey points exceed the time threshold (units msecs).
