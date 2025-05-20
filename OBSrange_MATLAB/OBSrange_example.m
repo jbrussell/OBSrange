@@ -111,8 +111,8 @@ end
 if isempty(data) || isempty(data.lon_drop) || isempty(data.lat_drop)
 	continue;
 end
+N_badpings = 0;
 if par.ifQC_ping
-    N_badpings = 0;
     count = 0;
     while count<par.QC_iter
         [dataQC, data_bad(count+1)] = pingQC(data, par);
