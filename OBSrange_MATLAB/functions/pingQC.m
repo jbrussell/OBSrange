@@ -41,7 +41,7 @@ alt = data.alt;
 x_drop=0;
 y_drop=0;
 
-twt_pre = calcTWT(x_drop, y_drop, z_drop, 0, 0, x_ship, y_ship, 0, vp_w);
+twt_pre = calcTWT(x_drop, y_drop, z_drop, 0, par.TAT, x_ship, y_ship, 0, vp_w);
 dtwt = twt - twt_pre;
 
 I_bad = abs(dtwt)*1000 > res_thresh | alt' < 0;
