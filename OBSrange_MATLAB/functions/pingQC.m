@@ -46,14 +46,19 @@ twt_pre = calcTWT(x_drop, y_drop, z_drop, 0, TAT, x_ship, y_ship, 0, vp_w);
 dtwt = twt - twt_pre;
 
 I_bad = abs(dtwt)*1000 > res_thresh | alt' < 0;
+if_fix_oneway_tt = 0;
 if (sum(I_bad)/length(I_bad))>0.9
     % MUST BE 1-way travel time??!!
     twt = 2*twt;
     dtwt = twt - twt_pre;
     I_bad = abs(dtwt)*1000 > res_thresh;
+    if_fix_oneway_tt = 1;
 end
 if (sum(I_bad)/length(I_bad))>0.9
     error('Something very wrong with travel times...');
+end
+if if_fix_oneway_tt
+    warning('Travel times were apparently one-way and have been multiplied by 2!');
 end
 
 % Do quick inversion and remove bad pings based on RMS of2 residuals for best location
