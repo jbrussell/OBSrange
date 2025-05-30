@@ -33,7 +33,7 @@ twt = data.twt;
 vp_w = par.vp_w;
 res_thresh = par.res_thresh;
 rms_thresh = par.rms_thresh;
-TAT = par.TAT
+TAT = par.TAT;
 % dtwt_thresh = par.dtwt_thresh/1e3;
 alt = data.alt;
 
