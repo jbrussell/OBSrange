@@ -115,6 +115,7 @@ N_badpings = 0;
 data_bad = [];
 if par.ifQC_ping
     count = 0;
+    clear data_bad
     while count<par.QC_iter
         [dataQC, data_bad(count+1)] = pingQC(data, par);
         data = dataQC;
