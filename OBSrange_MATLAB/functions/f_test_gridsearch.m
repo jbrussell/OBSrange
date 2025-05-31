@@ -109,8 +109,8 @@ P = 1 - ( fcdf(Fobs,v_eff,v_eff) - fcdf(1/Fobs,v_eff,v_eff) );
 
 
 [Pz_max, Iz_max] = max(max(max(P)));
-[Py_max, Iy_max] = max(max(P(:,:,Iz_max)));
-[Px_max, Ix_max] = max(P(:,Iy_max,Iz_max));
+[Px_max, Ix_max] = max(max(P(:,:,Iz_max)));
+[Py_max, Iy_max] = max(P(:,Ix_max,Iz_max));
 
 % statistics on F-test surface
 f_test_err = f_test_err_est(P,[68 95],x_grid,x_sta_bs,y_grid,y_sta_bs,z_grid,z_sta_bs);
