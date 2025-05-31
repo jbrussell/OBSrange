@@ -41,7 +41,7 @@ ht = title(ax2,['\textbf{Z$_{sta} -$ Z$_{drop}$ = ',num2str(mean(dz_sta),'%.1f')
 set(ht,'pos',get(ht,'pos')+[0 50 0]);
 xlabel(ax2,'Longitude','fontsize',18,'interpreter','latex');
 ylabel(ax2,'Depth','fontsize',18,'interpreter','latex');
-legend(h1,{'Ship','Drop Pt.','Solution'},'location','southeast','fontsize',13);
+legend(h1,{'Ship','Drop Pt.','Avg. Solution'},'location','southeast','fontsize',13);
 
 % correct vertical exaggeration
 kmpdeg = londist./diff(lonlim);
@@ -60,4 +60,10 @@ posvec = [axpos(ax2,1),...
 end
 set(ax2,'pos',posvec);
 % vexag_actual_new = vertexag( ax2 )*kmpdeg*1000;
+
+% Plot bootstrap results and result for full dataset (bootstrap index = 1)
+plot(ax1,lon_sta,lat_sta,'.k','linewidth',1)
+plot(ax1,lon_sta(1),lat_sta(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',10,'linewidth',1)
+plot(ax2,lon_sta,z_sta,'.k','linewidth',1,'DisplayName','Bootstraps')
+plot(ax2,lon_sta(1),z_sta(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',10,'linewidth',1,'DisplayName','Full dataset')
 

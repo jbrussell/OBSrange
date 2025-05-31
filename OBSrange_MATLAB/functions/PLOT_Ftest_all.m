@@ -12,7 +12,7 @@ z_bds = [min(z_grid),max(z_grid)];
 % x_tix = unique(round_level([x_bds(1)-10:5:x_bds(2)+10],5));
 % y_tix = unique(round_level([y_bds(1)-10:5:y_bds(2)+10],5));
 % z_tix = unique(round_level([z_bds(1)-10:5:z_bds(2)+10],5));
-dtick = [1,2,4,5,10,20];
+dtick = [1,2,4,5,10,20,100,500,1000,2000,5000];
 dtickx = dtick(mindex(abs((x_grid(end)-x_grid(1))/8 - dtick)));
 dticky = dtick(mindex(abs((y_grid(end)-y_grid(1))/8 - dtick)));
 dtickz = dtick(mindex(abs((z_grid(end)-z_grid(1))/8 - dtick)));
@@ -89,3 +89,8 @@ htz3 = text(ax3,y_bds(2)-0.04*diff(axlim(ax3,1:2)),z_bds(1)+0.05*diff(axlim(ax3,
     sprintf('$\\mathbf{\\bar{z}}$\\textbf{ = %.1f m}',median(z_grid)),'color','white','interpreter','latex','fontsize',17);
 % axis equal;
 colorbar('peer',ax3,'linewidth',2)
+
+% Plot location for full dataset (bootstrap index = 1)
+plot(ax1,x_sta_bs(1),y_sta_bs(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',8,'linewidth',1)
+plot(ax2,x_sta_bs(1),z_sta_bs(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',8,'linewidth',1)
+plot(ax3,y_sta_bs(1),z_sta_bs(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',8,'linewidth',1)

@@ -33,6 +33,13 @@ title(ax5,'\textbf{Water Velocity (m/s)}','fontsize',18,'interpreter','latex');
 [ Ncount_drift, cent_drift ] = plot_hist(ax6,drift,Nbins);
 title(ax6,'\textbf{Drift (m)}','fontsize',18,'interpreter','latex');
 
+% Plot values for full dataset (bootstrap index = 1)
+xline(ax1,lat_sta(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
+xline(ax2,lon_sta(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
+xline(ax3,z_sta(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
+xline(ax5,V_w(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
+xline(ax6,drift(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
+
 %% ticks for the histograms - in m about central value
 [cent_x,cent_y] = lonlat2xy_nomap(mean(cent_lon),mean(cent_lat),cent_lon,cent_lat);
 % ticks every two m

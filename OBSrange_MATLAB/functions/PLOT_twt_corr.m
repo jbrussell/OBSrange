@@ -88,3 +88,11 @@ ylabel(cb,'\textbf{Doppler correction (ms)}','interpreter','latex');
 caxis(ax4,[-max(abs(dtwtcorr_bs)*1000) max(abs(dtwtcorr_bs)*1000)])
 % cb.Ticks = linspace(-max(cb.Ticks),max(cb.Ticks),11);
 % axis(ax4,'equal');
+
+% Plot bootstrap results and result for full dataset (bootstrap index = 1)
+plot(ax1,lon_sta,lat_sta,'.k','linewidth',1)
+plot(ax1,lon_sta(1),lat_sta(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',10,'linewidth',1)
+plot(ax2,lon_sta,lat_sta,'.k','linewidth',1)
+plot(ax2,lon_sta(1),lat_sta(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',10,'linewidth',1)
+plot(ax3,lon_sta,lat_sta,'.k','linewidth',1)
+plot(ax3,lon_sta(1),lat_sta(1),'ok','markerfacecolor',[147, 233, 190]/255,'markersize',10,'linewidth',1)
