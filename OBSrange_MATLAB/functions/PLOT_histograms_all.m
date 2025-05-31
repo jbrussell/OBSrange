@@ -42,9 +42,12 @@ xline(ax6,drift(1),'-','color',[147, 233, 190]/255,'alpha',1,'linewidth',3);
 
 %% ticks for the histograms - in m about central value
 [cent_x,cent_y] = lonlat2xy_nomap(mean(cent_lon),mean(cent_lat),cent_lon,cent_lat);
+dtick = [1,2,5,10,20,100,500,1000,2000,5000];
+dtickx = dtick(mindex(abs((max(cent_x)-min(cent_x))/8 - dtick)));
+dticky = dtick(mindex(abs((max(cent_y)-min(cent_y))/8 - dtick)));
 % ticks every two m
-tick_x = [2*floor(min(cent_x)/2):2:2*ceil(max(cent_x)/2)];
-tick_y = [2*floor(min(cent_y)/2):2:2*ceil(max(cent_y)/2)];
+tick_x = [2*floor(min(cent_x)/2):dtickx:2*ceil(max(cent_x)/2)];
+tick_y = [2*floor(min(cent_y)/2):dticky:2*ceil(max(cent_y)/2)];
 [~,tick_lat] = xy2lonlat_nomap(mean(cent_lon),mean(cent_lat),0,tick_y);
 [tick_lon,~] = xy2lonlat_nomap(mean(cent_lon),mean(cent_lat),tick_x,0);
 [~,latlim] = xy2lonlat_nomap(mean(cent_lon),mean(cent_lat),0,1.2*[min(cent_y),max(cent_y)]);
