@@ -112,6 +112,7 @@ if isempty(data) || isempty(data.lon_drop) || isempty(data.lat_drop)
 	continue;
 end
 N_badpings = 0;
+data_bad = [];
 if par.ifQC_ping
     count = 0;
     while count<par.QC_iter
