@@ -1,4 +1,5 @@
-% MAIN script to run location inversion for an OBS deployment
+% MAIN script to run location inversion for an OBS deployment. This example
+% is for OBS that recorded direct acoustic P-wave arrivals from airgun shots.
 % 
 % Requires: 
 %   Acoustic survey files in some directory 
@@ -9,13 +10,14 @@
 % and static correction to the sound velocity through the
 % water column (dvp).
 %
-% Josh Russell, Zach Eilon, & Stephen Mosher 4/16/18
+% Josh Russell, Zach Eilon, Stephen Mosher, & Brandon Shuck 
+% 2025
 
 clear; close all;
 
 %% INPUTS
 % path to project
-projpath = './EXAMPLE/';
+projpath = './EXAMPLE_airgun/';
 
 % path to survey data from the project directory
 datapath = './survey_files/'; 
@@ -25,8 +27,8 @@ outdir = './output/';
 
 % Put a string station name here to only consider that station. 
 % Otherwise, to locate all stations, put ''
-% onesta = 'EC03'; % run a single station file
-onesta = ''; % run all station files in batch
+onesta = '1AS16'; %'1AS23'; %'5S18'; %'1AS16'; % run a single station file
+% onesta = ''; % run all station files in batch
 
 %% Parameters
 ifsave = 1; % Save results to *.mat?
@@ -34,13 +36,13 @@ ifplot = 1; % Plot results?
 
 par = struct([]);
 par(1).vp_w = 1500; % Assumed water velocity (m/s)
-par.N_bs = 1000; % Number of bootstrap iterations
+par.N_bs = 1000; %1000; % Number of bootstrap iterations
 par.E_thresh = 1e-5; % RMS reduction threshold for inversion
 
 % Option for inverting first arrival P-waves from airgun shots for active source experiments
 % ==> 0 if traditional survey using acoustic transponder, 1 if using airgun shots
 % If = 1, a "ping" file should be generated in which the traveltime is the one-way P-wave pick
-par.if_airgun_shots = 0; % set = 1 if ?pings? represent one-way airgun shot first arrivals
+par.if_airgun_shots = 1; % set = 1 if ?pings? represent one-way airgun shot first arrivals
 
 % Doppler correction to traveltime
 % ==>  +1 if location is RECEIVE, -1 if location is SEND, 0 if no correction
@@ -48,7 +50,7 @@ par.if_twtcorr = 0; % Apply a traveltime correction to account for ship velocity
 par.npts_movingav = 1; %5; % number of points to include in moving average smoothing of ship velocity (1 = no smoothing);
 
 % Raybending correction parameters
-par.if_raycorrect = 1; % Apply a traveltime correction to account for rays bending?
+par.if_raycorrect = 0; % Apply a traveltime correction to account for rays bending?
 %  NOTE - if you choose to do this you can either input your own
 %  depth-soundspeed profile (make sure "SSP_stationname.txt" files are
 %  sitting in the directory defined below, where "stationname" is the same
@@ -63,23 +65,23 @@ par.dforward = 0; % units of meters, positive means transponder is further forwa
 par.dstarboard = 0; % units of meters, positive means transponder is further starboard than GPS
 
 % Ping QC -- Remove pings > ping_thresh ms away from neighbor
-par.ifQC_ping = 1; % Do quality control on pings? (We strongly recommend this!)
+par.ifQC_ping = 1; %1; % Do quality control on pings? (We strongly recommend this!)
 par.res_thresh = 500; % (ms) Will filter out pings with residuals > specified magnitude
 par.rms_thresh = 2.5; % Remove pings above this RMS residual threshold, calculated from a single travel-time inversion
 par.QC_iter = 20; % number of times to iterate through QC steps
 
 % TAT - Define turnaround which remains fixed (transponder-specific value)
-par.TAT = 0.013; % (s) [13 ms for Edgetech instruments]
+par.TAT = 0; %zero for active source example %0.013; % (s) [13 ms for Edgetech instruments]
 
 % Norm damping for each model parameter (damping towards starting model)
 % Larger values imply more damping towards the starting model.
 par.dampx = 0;
 par.dampy = 0;
-par.dampz = 0; %1e3; %0
-par.dampdvp = 5e-8; %1e3; %5e-8
+par.dampz = 0*3e-4; %3e-4; %0; %1e3; %0
+par.dampdvp = 0*5e-8; %1e3; %5e-8
 
 % Global norm damping for stabilization
-par.epsilon = 1e-10;
+par.epsilon = 1e-8; %1e-10;
 
 %% ===================================================================== %%
 %% ================ NOT ADVISED TO EDIT BELOW THIS LINE ================ %%
@@ -275,6 +277,9 @@ end
 tic
 Ftest_res = f_test_gridsearch(par,x_ship,y_ship,x_sta,y_sta,z_sta,V_w,TAT,v_eff,twtcorr_bs,ifplot);        
 toc
+
+% Ftest_res = f_test_gridsearch_bestfit(par,x_ship,y_ship,x_sta,y_sta,z_sta,V_w,TAT,v_eff,twtcorr_bs,E_rms,ifplot);  
+
 %% Print some results
 fprintf('\nStation: %s',data.sta);
 fprintf('\nlat:   %.5f deg (%f) \nlon:   %.5f deg (%f) \nx:     %.1f m (%.1f) \ny:    %.1f m (%.1f) \ndepth: %.1f m (%.1f) \nTAT:   %.1f ms \nv_H20: %.1f m/s (%.1f)',mean(lat_sta),std(lat_sta)*2,mean(lon_sta),std(lon_sta)*2,mean(x_sta),std(x_sta)*2,mean(y_sta),std(y_sta)*2,mean(z_sta),std(z_sta)*2,mean(TAT)*1000,mean(V_w),std(V_w)*2);

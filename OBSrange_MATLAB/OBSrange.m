@@ -37,6 +37,11 @@ par(1).vp_w = 1500; % Assumed water velocity (m/s)
 par.N_bs = 1000; % Number of bootstrap iterations
 par.E_thresh = 1e-5; % RMS reduction threshold for inversion
 
+% Option for inverting first arrival P-waves from airgun shots for active source experiments
+% ==> 0 if traditional survey using acoustic transponder, 1 if using airgun shots
+% If = 1, a "ping" file should be generated in which the traveltime is the one-way P-wave pick
+par.if_airgun_shots = 0; % set = 1 if ?pings? represent one-way airgun shot first arrivals
+
 % Doppler correction to traveltime
 % ==>  +1 if location is RECEIVE, -1 if location is SEND, 0 if no correction
 par.if_twtcorr = 0; % Apply a traveltime correction to account for ship velocity?
@@ -110,6 +115,13 @@ data = load_pings([datapath,rawdatfile(irf).name]);
 end
 if isempty(data) || isempty(data.lon_drop) || isempty(data.lat_drop)
 	continue;
+end
+if par.if_airgun_shots == 1 % modify setup for active source experiment
+    par.if_twtcorr = 0; % no correction for ship velocity because one-way signal
+    par.dforward = 0; % "transponder" (i.e., shot) and GPS are colocated
+    par.dstarboard = 0; % "transponder" (i.e., shot) and GPS are colocated
+    par.TAT = 0; % no turn-around time for one-way travel time
+    data.twt = data.twt * 2; % convert one-way travel time into two-way travel time
 end
 N_badpings = 0;
 data_bad = [];
