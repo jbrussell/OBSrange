@@ -15,7 +15,7 @@ from scipy.stats import hmean
 from scipy.interpolate import interp1d
 from funcs import get, shootrays
 
-from IPython.core.debugger import Tracer
+# from IPython.core.debugger import Tracer
 
 def load_ssp(ssp_fname):
   # Declare lists for velocities and depths. 

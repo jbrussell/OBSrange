@@ -11,7 +11,7 @@ import numpy as np
 from numpy.lib.scimath import sqrt
 from scipy.interpolate import interp1d
 
-from IPython.core.debugger import Tracer
+# from IPython.core.debugger import Tracer
 
 # Given two arrays, this function finds the closest value in the smaller array
 # to each value in the larger array.
