@@ -35,12 +35,18 @@ def instruments(datafile, parameters, ssp_dir):
   dstarboard = parameters[14]
   twtcorr    = parameters[15]
   raycorr    = parameters[16]     
-  
+  airgun     = parameters[17]
+
   ######################### Load and Clean Input Data ##########################
   
   # Load data.
   print('\n Loading file ' + datafile.split('/')[-1] +' ...')
   data = pings.load(datafile)
+
+  if airgun:
+    # Convert one-way travel time to two-way travel time
+    data['twts'] = data['twts'] * 2
+
   
   # Perform quality control on loaded data.
   if QC:

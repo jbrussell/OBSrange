@@ -38,9 +38,18 @@ raycorr = False    # Option to apply a travel-time correction due to ray bending
                   #   If you choose to correct for ray beding you can either
                   #   input your own depth-soundspeed profile OR our code will 
                   #   calculate one for you see the README for further details.
+airgun = False # Option for inverting first arrival P-waves from airgun shots for active source experiments
+                  # ==> False if traditional survey using acoustic transponder, True if using airgun shots
+                  # If True, a "ping" file should be generated in which the traveltime is the one-way P-wave pick
+
+if airgun:  # modify setup for active source experiment
+  twtcorr = False # no correction for ship velocity because one-way signal
+  dforward = 0 # "transponder" (i.e., shot) and GPS are colocated
+  dstarboard = 0 # "transponder" (i.e., shot) and GPS are colocated
+  tat = 0 # no turn-around time for one-way travel time
 
 parameters = [vpw, dvp, tat, N_bs, E_thresh, npts, dampx, dampy, dampz, dampdvp,
-              eps, QC, res_thresh, dforward, dstarboard, twtcorr, raycorr]
+              eps, QC, res_thresh, dforward, dstarboard, twtcorr, raycorr, airgun]
 
 ################################ Directory Setup ###############################
 
