@@ -376,8 +376,8 @@ def ftest(xg, yg, zg, Xg, Yg, Zg, P, xmax, ymax, zmax, res):
   
   ax1.scatter(res.xs - x, res.ys - y, color='k', s=1)
   
-  ax1.scatter(Xg[xmax,ymax,zmax] - x,
-              Yg[xmax,ymax,zmax] - y,
+  ax1.scatter(Xg[ymax,xmax,zmax] - x,
+              Yg[ymax,xmax,zmax] - y,
               s=100,
               c='r',
               edgecolors='k',
@@ -411,8 +411,8 @@ def ftest(xg, yg, zg, Xg, Yg, Zg, P, xmax, ymax, zmax, res):
   
   ax2.scatter(res.xs - x, res.zs - z, color='k', s=1)
 
-  ax2.scatter(Xg[xmax,ymax,zmax] - x,
-              Zg[xmax,ymax,zmax] - z,
+  ax2.scatter(Xg[ymax,xmax,zmax] - x,
+              Zg[ymax,xmax,zmax] - z,
               s=100,
               c='r',
               edgecolors='k',
@@ -446,8 +446,8 @@ def ftest(xg, yg, zg, Xg, Yg, Zg, P, xmax, ymax, zmax, res):
   
   ax3.scatter(res.ys - y, res.zs - z, color='k', s=1)
 
-  ax3.scatter(Yg[xmax,ymax,zmax] - y,
-              Zg[xmax,ymax,zmax] - z,
+  ax3.scatter(Yg[ymax,xmax,zmax] - y,
+              Zg[ymax,xmax,zmax] - z,
               s=100,
               c='r',
               edgecolors='k',

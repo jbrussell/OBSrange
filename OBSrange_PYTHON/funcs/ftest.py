@@ -137,6 +137,6 @@ def test(R, coords, lat0, lon0, vpw):
   P = dof(resid_gs, v_effM, resid_bs, v_effM) 
   E = np.sqrt( np.sum(resid_gs**2) / len(resid_gs))
 
-  xmax, ymax, zmax = np.where( P == np.amax(P) )
+  ymax, xmax, zmax = np.where( P == np.amax(P) )
 
   return xg, yg, zg, Xg, Yg, Zg, P, xmax[0], ymax[0], zmax[0], E
