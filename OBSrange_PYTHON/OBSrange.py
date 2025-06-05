@@ -33,7 +33,7 @@ res_thresh = 500        # Threshold [ms] beyond which survey points are tossed
 dforward = 0            # GPS-transp offset [m] (+ means trans. further forward)
 dstarboard = 0          # GPS-transp offset [m] (+ means trans. further stboard)
 twtcorr = False   # Option to apply a travel-time correction for ship velocity
-raycorr = True    # Option to apply a travel-time correction due to ray bending:
+raycorr = False    # Option to apply a travel-time correction due to ray bending:
                   #   If you choose to correct for ray beding you can either
                   #   input your own depth-soundspeed profile OR our code will 
                   #   calculate one for you see the README for further details.
