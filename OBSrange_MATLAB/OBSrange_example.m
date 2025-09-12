@@ -42,6 +42,11 @@ par.E_thresh = 1e-5; % RMS reduction threshold for inversion
 % If = 1, a "ping" file should be generated in which the traveltime is the one-way P-wave pick
 par.if_airgun_shots = 0; % set = 1 if ?pings? represent one-way airgun shot first arrivals
 
+% Format of the survey ping file depending on which OBS group is conducting the survey. 
+% Current options are Scripps Institution of oceanography (SIO) and 
+% Woods Hole Oceanographic Institution (WHOI)
+par.survey_file_fmt = 'SIO'; % 'SIO' or 'WHOI'
+
 % Doppler correction to traveltime
 % ==>  +1 if location is RECEIVE, -1 if location is SEND, 0 if no correction
 par.if_twtcorr = 0; % Apply a traveltime correction to account for ship velocity?
@@ -110,8 +115,14 @@ rawdatfile = dir([datapath,sta,'*']);data = [];
 for irf = 1:length(rawdatfile)
 	if any(regexp(rawdatfile(irf).name,'orrect')) 
 		continue;
-	end
-data = load_pings([datapath,rawdatfile(irf).name]);        
+    end
+    if strcmp(par.survey_file_fmt,'SIO')
+        data = load_pings([datapath,rawdatfile(irf).name]); 
+    elseif strcmp(par.survey_file_fmt,'WHOI')
+        data = load_pings_WHOI([datapath,rawdatfile(irf).name]);
+    else
+        error('par.survey_file_fmt must be SIO or WHOI')
+    end
 end
 if isempty(data) || isempty(data.lon_drop) || isempty(data.lat_drop)
 	continue;
