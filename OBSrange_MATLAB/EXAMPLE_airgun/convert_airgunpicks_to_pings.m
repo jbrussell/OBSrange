@@ -1,5 +1,7 @@
 % Convert Brandon's airgun picks made on SPOBS at Me GUSTA! experiment to
 % equivalent one-way travel time "pings". We will multiply by two in the
+%
+% Josh Russell, 2025
 % main code.
 
 clear; close all;
