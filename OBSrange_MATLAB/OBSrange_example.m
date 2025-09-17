@@ -17,11 +17,11 @@ clear; close all;
 % path to project
 projpath = './EXAMPLE/';
 
-% path to survey data from the project directory
-datapath = './survey_files/'; 
+% path to survey data
+datapath = [projpath,'/survey_files/']; 
 
-% path to output directory from project directory (will be created if it does not yet exist)
-outdir = './output/'; 
+% path to output directory (will be created if it does not yet exist)
+outdir = [projpath,'./output/']; 
 
 % Put a string station name here to only consider that station. 
 % Otherwise, to locate all stations, put ''
@@ -97,11 +97,9 @@ functionsSSPpath = [pwd,'/functions/ocean_profiles_obsrange'];
 addpath(functionsSSPpath);
 
 %% Load 2-way Travel Time Data
-wd = pwd;
 if ~exist(projpath)
     mkdir(projpath);
 end
-cd(projpath);
 files = dir([datapath,'/*.txt']);
 stas = unique(strtok({files.name},{'_','.txt'}));
 Nstas = length(stas);
@@ -403,4 +401,3 @@ txts2xls(path2txts,ofile);
 if is==Nstas && ~exist('rawdatfile','var')
     fprintf('*********************\nStation %s does not seem to exist in that folder\n',onesta);
 end
-cd (wd)
