@@ -9,13 +9,13 @@
 % and static correction to the sound velocity through the
 % water column (dvp).
 %
-% Josh Russell, Zach Eilon, & Stephen Mosher 4/16/18
+% Josh Russell, Zach Eilon, Stephen Mosher, & Anant Hariharan 2025
 
 clear; close all;
 
 %% INPUTS
 % path to project
-projpath = './new_project/';
+projpath = './results/';
 
 % path to survey data
 datapath = [projpath,'/survey_files/']; 
