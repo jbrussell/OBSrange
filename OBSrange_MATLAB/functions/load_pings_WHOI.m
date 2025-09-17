@@ -12,10 +12,10 @@ fid = fopen(filename);
 iping = 0;
 
 % Read header info
-for i=1:6 row = fgetl(fid); end
-hdr = textscan(row,'# Instrument: %s');
+for i=1:5 row = fgetl(fid); end
+hdr = textscan(row,'# Station: %s');
 sta = cell2mat(hdr{1}); 
-row = fgetl(fid); 
+for i=1:2 row = fgetl(fid); end 
 hdr = textscan(row,'# Drop-Point Latitude: %f%f%s');
 if isempty(hdr{2})&&isempty(hdr{3})
     lat_drop = hdr{1};
