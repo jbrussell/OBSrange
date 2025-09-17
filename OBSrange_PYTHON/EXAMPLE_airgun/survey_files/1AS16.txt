@@ -1,0 +1,90 @@
+Ranging data taken on:  2022-05-17 20:02:09.838010
+Cruise:                 obs-cruise
+Site:                   1AS16
+Instrument:             
+Drop Point (Latitude):  14.66246
+Drop Point (Longitude): -102.77451
+Depth (meters):         3472
+Comment:                
+==================================================
+
+11600 msec. Lat: 14 41.4619 N  Lon: 102 37.0630 W  Alt: 0.00 Time(UTC): 2022:137:20:02:09
+11340 msec. Lat: 14 41.4226 N  Lon: 102 37.2823 W  Alt: 0.00 Time(UTC): 2022:137:20:04:44
+11080 msec. Lat: 14 41.3825 N  Lon: 102 37.5012 W  Alt: 0.00 Time(UTC): 2022:137:20:07:20
+10820 msec. Lat: 14 41.3423 N  Lon: 102 37.7203 W  Alt: 0.00 Time(UTC): 2022:137:20:09:56
+10560 msec. Lat: 14 41.3030 N  Lon: 102 37.9394 W  Alt: 0.00 Time(UTC): 2022:137:20:12:33
+10290 msec. Lat: 14 41.2624 N  Lon: 102 38.1582 W  Alt: 0.00 Time(UTC): 2022:137:20:15:09
+10040 msec. Lat: 14 41.2232 N  Lon: 102 38.3774 W  Alt: 0.00 Time(UTC): 2022:137:20:17:45
+9765 msec. Lat: 14 41.1844 N  Lon: 102 38.5967 W  Alt: 0.00 Time(UTC): 2022:137:20:20:21
+9510 msec. Lat: 14 41.1437 N  Lon: 102 38.8157 W  Alt: 0.00 Time(UTC): 2022:137:20:23:00
+9250 msec. Lat: 14 41.1054 N  Lon: 102 39.0349 W  Alt: 0.00 Time(UTC): 2022:137:20:25:38
+8980 msec. Lat: 14 41.0663 N  Lon: 102 39.2540 W  Alt: 0.00 Time(UTC): 2022:137:20:28:18
+8715 msec. Lat: 14 41.0274 N  Lon: 102 39.4733 W  Alt: 0.00 Time(UTC): 2022:137:20:30:56
+8465 msec. Lat: 14 40.9869 N  Lon: 102 39.6921 W  Alt: 0.00 Time(UTC): 2022:137:20:33:35
+8200 msec. Lat: 14 40.9467 N  Lon: 102 39.9110 W  Alt: 0.00 Time(UTC): 2022:137:20:36:15
+7945 msec. Lat: 14 40.9065 N  Lon: 102 40.1301 W  Alt: 0.00 Time(UTC): 2022:137:20:38:53
+7700 msec. Lat: 14 40.8673 N  Lon: 102 40.3492 W  Alt: 0.00 Time(UTC): 2022:137:20:41:31
+7445 msec. Lat: 14 40.8274 N  Lon: 102 40.5683 W  Alt: 0.00 Time(UTC): 2022:137:20:44:07
+7170 msec. Lat: 14 40.7867 N  Lon: 102 40.7873 W  Alt: 0.00 Time(UTC): 2022:137:20:46:43
+6920 msec. Lat: 14 40.7472 N  Lon: 102 41.0062 W  Alt: 0.00 Time(UTC): 2022:137:20:49:19
+6675 msec. Lat: 14 40.7070 N  Lon: 102 41.2255 W  Alt: 0.00 Time(UTC): 2022:137:20:51:54
+6430 msec. Lat: 14 40.6681 N  Lon: 102 41.4445 W  Alt: 0.00 Time(UTC): 2022:137:20:54:30
+6185 msec. Lat: 14 40.6291 N  Lon: 102 41.6635 W  Alt: 0.00 Time(UTC): 2022:137:20:57:06
+5935 msec. Lat: 14 40.5892 N  Lon: 102 41.8827 W  Alt: 0.00 Time(UTC): 2022:137:20:59:41
+5690 msec. Lat: 14 40.5495 N  Lon: 102 42.1016 W  Alt: 0.00 Time(UTC): 2022:137:21:02:16
+5445 msec. Lat: 14 40.5098 N  Lon: 102 42.3208 W  Alt: 0.00 Time(UTC): 2022:137:21:04:51
+5205 msec. Lat: 14 40.4708 N  Lon: 102 42.5400 W  Alt: 0.00 Time(UTC): 2022:137:21:07:26
+4960 msec. Lat: 14 40.4312 N  Lon: 102 42.7592 W  Alt: 0.00 Time(UTC): 2022:137:21:10:02
+4725 msec. Lat: 14 40.3906 N  Lon: 102 42.9779 W  Alt: 0.00 Time(UTC): 2022:137:21:12:38
+4490 msec. Lat: 14 40.3526 N  Lon: 102 43.1973 W  Alt: 0.00 Time(UTC): 2022:137:21:15:15
+4265 msec. Lat: 14 40.3127 N  Lon: 102 43.4164 W  Alt: 0.00 Time(UTC): 2022:137:21:17:54
+4055 msec. Lat: 14 40.2709 N  Lon: 102 43.6351 W  Alt: 0.00 Time(UTC): 2022:137:21:20:32
+3830 msec. Lat: 14 40.2314 N  Lon: 102 43.8542 W  Alt: 0.00 Time(UTC): 2022:137:21:23:09
+3625 msec. Lat: 14 40.1923 N  Lon: 102 44.0735 W  Alt: 0.00 Time(UTC): 2022:137:21:25:49
+3415 msec. Lat: 14 40.1517 N  Lon: 102 44.2924 W  Alt: 0.00 Time(UTC): 2022:137:21:28:28
+3225 msec. Lat: 14 40.1116 N  Lon: 102 44.5113 W  Alt: 0.00 Time(UTC): 2022:137:21:31:06
+3030 msec. Lat: 14 40.0718 N  Lon: 102 44.7302 W  Alt: 0.00 Time(UTC): 2022:137:21:33:44
+2865 msec. Lat: 14 40.0327 N  Lon: 102 44.9495 W  Alt: 0.00 Time(UTC): 2022:137:21:36:22
+2705 msec. Lat: 14 39.9940 N  Lon: 102 45.1687 W  Alt: 0.00 Time(UTC): 2022:137:21:39:01
+2565 msec. Lat: 14 39.9542 N  Lon: 102 45.3879 W  Alt: 0.00 Time(UTC): 2022:137:21:41:41
+2435 msec. Lat: 14 39.9145 N  Lon: 102 45.6069 W  Alt: 0.00 Time(UTC): 2022:137:21:44:18
+2350 msec. Lat: 14 39.8731 N  Lon: 102 45.8257 W  Alt: 0.00 Time(UTC): 2022:137:21:46:56
+2285 msec. Lat: 14 39.8323 N  Lon: 102 46.0445 W  Alt: 0.00 Time(UTC): 2022:137:21:49:33
+2250 msec. Lat: 14 39.7933 N  Lon: 102 46.2636 W  Alt: 0.00 Time(UTC): 2022:137:21:52:09
+2240 msec. Lat: 14 39.7541 N  Lon: 102 46.4827 W  Alt: 0.00 Time(UTC): 2022:137:21:54:45
+2265 msec. Lat: 14 39.7135 N  Lon: 102 46.7015 W  Alt: 0.00 Time(UTC): 2022:137:21:57:21
+2320 msec. Lat: 14 39.6742 N  Lon: 102 46.9208 W  Alt: 0.00 Time(UTC): 2022:137:21:59:56
+2410 msec. Lat: 14 39.6328 N  Lon: 102 47.1394 W  Alt: 0.00 Time(UTC): 2022:137:22:02:31
+2525 msec. Lat: 14 39.5941 N  Lon: 102 47.3585 W  Alt: 0.00 Time(UTC): 2022:137:22:05:07
+2650 msec. Lat: 14 39.5549 N  Lon: 102 47.5779 W  Alt: 0.00 Time(UTC): 2022:137:22:07:42
+2795 msec. Lat: 14 39.5137 N  Lon: 102 47.7965 W  Alt: 0.00 Time(UTC): 2022:137:22:10:19
+2970 msec. Lat: 14 39.4746 N  Lon: 102 48.0157 W  Alt: 0.00 Time(UTC): 2022:137:22:12:57
+3155 msec. Lat: 14 39.4340 N  Lon: 102 48.2347 W  Alt: 0.00 Time(UTC): 2022:137:22:15:35
+3340 msec. Lat: 14 39.3935 N  Lon: 102 48.4534 W  Alt: 0.00 Time(UTC): 2022:137:22:18:14
+3515 msec. Lat: 14 39.3549 N  Lon: 102 48.6728 W  Alt: 0.00 Time(UTC): 2022:137:22:20:53
+3750 msec. Lat: 14 39.3132 N  Lon: 102 48.8913 W  Alt: 0.00 Time(UTC): 2022:137:22:23:34
+3975 msec. Lat: 14 39.2728 N  Lon: 102 49.1102 W  Alt: 0.00 Time(UTC): 2022:137:22:26:15
+4190 msec. Lat: 14 39.2329 N  Lon: 102 49.3293 W  Alt: 0.00 Time(UTC): 2022:137:22:28:54
+4415 msec. Lat: 14 39.1936 N  Lon: 102 49.5486 W  Alt: 0.00 Time(UTC): 2022:137:22:31:34
+4650 msec. Lat: 14 39.1528 N  Lon: 102 49.7674 W  Alt: 0.00 Time(UTC): 2022:137:22:34:14
+4880 msec. Lat: 14 39.1128 N  Lon: 102 49.9865 W  Alt: 0.00 Time(UTC): 2022:137:22:36:52
+5120 msec. Lat: 14 39.0729 N  Lon: 102 50.2054 W  Alt: 0.00 Time(UTC): 2022:137:22:39:30
+5370 msec. Lat: 14 39.0338 N  Lon: 102 50.4245 W  Alt: 0.00 Time(UTC): 2022:137:22:42:09
+5600 msec. Lat: 14 38.9932 N  Lon: 102 50.6434 W  Alt: 0.00 Time(UTC): 2022:137:22:44:48
+5855 msec. Lat: 14 38.9535 N  Lon: 102 50.8625 W  Alt: 0.00 Time(UTC): 2022:137:22:47:28
+6105 msec. Lat: 14 38.9140 N  Lon: 102 51.0814 W  Alt: 0.00 Time(UTC): 2022:137:22:50:07
+6355 msec. Lat: 14 38.8740 N  Lon: 102 51.3007 W  Alt: 0.00 Time(UTC): 2022:137:22:52:46
+6605 msec. Lat: 14 38.8334 N  Lon: 102 51.5192 W  Alt: 0.00 Time(UTC): 2022:137:22:55:25
+6860 msec. Lat: 14 38.7944 N  Lon: 102 51.7387 W  Alt: 0.00 Time(UTC): 2022:137:22:58:05
+7110 msec. Lat: 14 38.7538 N  Lon: 102 51.9573 W  Alt: 0.00 Time(UTC): 2022:137:23:00:45
+7355 msec. Lat: 14 38.7139 N  Lon: 102 52.1764 W  Alt: 0.00 Time(UTC): 2022:137:23:03:24
+7610 msec. Lat: 14 38.6726 N  Lon: 102 52.3950 W  Alt: 0.00 Time(UTC): 2022:137:23:06:03
+7870 msec. Lat: 14 38.6329 N  Lon: 102 52.6139 W  Alt: 0.00 Time(UTC): 2022:137:23:08:40
+8130 msec. Lat: 14 38.5927 N  Lon: 102 52.8328 W  Alt: 0.00 Time(UTC): 2022:137:23:11:18
+8385 msec. Lat: 14 38.5520 N  Lon: 102 53.0515 W  Alt: 0.00 Time(UTC): 2022:137:23:13:56
+8640 msec. Lat: 14 38.5123 N  Lon: 102 53.2707 W  Alt: 0.00 Time(UTC): 2022:137:23:16:35
+8900 msec. Lat: 14 38.4725 N  Lon: 102 53.4897 W  Alt: 0.00 Time(UTC): 2022:137:23:19:17
+9160 msec. Lat: 14 38.4330 N  Lon: 102 53.7089 W  Alt: 0.00 Time(UTC): 2022:137:23:21:59
+9420 msec. Lat: 14 38.3923 N  Lon: 102 53.9277 W  Alt: 0.00 Time(UTC): 2022:137:23:24:40
+9675 msec. Lat: 14 38.3512 N  Lon: 102 54.1464 W  Alt: 0.00 Time(UTC): 2022:137:23:27:20
+9945 msec. Lat: 14 38.3113 N  Lon: 102 54.3655 W  Alt: 0.00 Time(UTC): 2022:137:23:30:00
