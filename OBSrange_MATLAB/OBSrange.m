@@ -393,7 +393,7 @@ end
 end
 
 % Output summary Excel spreadsheet
-ofile = 'Station_Relocations.xls';
+ofile = [projpath,'/','Station_Relocations.xls'];
 path2txts = [modified_outdir,'/txts/'];
 txts2xls(path2txts,ofile);
 
