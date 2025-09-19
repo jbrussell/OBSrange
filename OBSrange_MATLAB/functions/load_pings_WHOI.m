@@ -45,7 +45,7 @@ while 1
     row = fgetl(fid);
     if row == -1
         break
-    elseif  any(regexp(row,'#'))
+    elseif  any(regexp(row,'#')) || any(regexp(row,'*'))
         disp('Bad ping denoted by ''*''');
         continue
     elseif length(row)<10
